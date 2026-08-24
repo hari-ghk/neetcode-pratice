@@ -1,0 +1,36 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+// Time: O(N), where N is the number of nodes traversed in both trees.
+// Space: O(H), where H is the height of the trees due to the recursion stack.
+class Solution {
+    
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        return isSameTreeRecursive(p, q);
+    }
+
+    private boolean isSameTreeRecursive(TreeNode p, TreeNode q){
+
+        if(p == null && q == null)
+            return true;
+
+        if(p == null || q == null)
+            return false;
+
+        return (p.val == q.val)
+                && isSameTreeRecursive(p.left, q.left)
+                && isSameTreeRecursive(p.right, q.right);
+    }
+}
